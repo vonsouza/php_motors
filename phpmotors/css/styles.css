@@ -1,0 +1,195 @@
+:root {
+    --blue-color: #4c96d7;
+}
+
+header {
+    max-width: 100%;
+}
+
+.internal-card {
+    margin: 1%;
+}
+
+.logo-image {
+    max-height: max-content;
+}
+.my-account {
+    float: right;
+    max-width: 100%;
+    font-size: x-large;
+    margin-right: 3%;
+}
+nav {
+    background-color: #333;
+    overflow: hidden;
+}
+
+nav a {
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: var(--blue-color);
+    color: black;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.card-external {
+    text-align: center;
+    min-width: 50%;
+}
+.card {
+    background-color: var(--blue-color);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 12px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    padding: 20px;
+    text-align: center;
+    max-width: 300px;
+    height: 100px;
+}
+
+.reviews-title {
+    margin-bottom: 10%;
+}
+ul li {
+    margin: 4%;
+}
+
+/* footer */
+hr {
+    border: none;
+    border-top: 5px solid black;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+footer p {
+    margin: 0;
+}
+
+.container-img {
+    position: relative;
+}
+
+.text-0 {
+    position: absolute;
+    top: 2%;
+    left: 0%;
+    transform: translate(20%, 20%);
+    color: var(--blue-color);
+    line-height: 0.8%;
+    font-weight: bold;
+}
+
+.text-1 {
+    position: absolute;
+    top: 7%;
+    left: 0%;
+    transform: translate(20%, 20%);
+    color: var(--blue-color);
+    line-height: 0.8%;
+}
+
+.text-2 {
+    position: absolute;
+    top: 12%;
+    left: 0%;
+    transform: translate(20%, 20%);
+    color: var(--blue-color);
+    line-height: 0.8%;
+}
+
+.text-3 {
+    position: absolute;
+    top: 17%;
+    left: 1%;
+    transform: translate(20%, 20%);
+    color: var(--blue-color);
+    line-height: 0.8%;
+}
+
+.img-own_today {
+    position: absolute;
+    top: 22%;
+    left: 0%;
+    transform: translate(20%, 20%);
+    max-width: 150px;
+}
+
+.container-img .delorean-img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.big-img-own_today {
+    display: block;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 800px) {
+    .last-update,
+    .img-own_today {
+        display: none;
+    }
+    .reviews-title {
+        margin-bottom: 5%;
+    }
+    body {
+        background-color: #fff;
+        font-family: "IBM Plex Mono", monospace;
+        font-weight: bold;
+    }
+    .main-card {
+        margin: 1%;
+        background-color: #fff;
+    }
+}
+@media (min-width: 800px) {
+    .big-img-own_today {
+        display: none;
+    }
+    .container {
+        display: flex;
+    }
+
+    .child-container {
+        flex: 1;
+    }
+
+    #child-container-1 {
+        order: 2;
+    }
+
+    #child-container-2 {
+        order: 1;
+    }
+    body {
+        background-image: url("../images/site/checkerboard.jpg");
+        font-family: "IBM Plex Mono", monospace;
+        font-weight: bold;
+    }
+    .main-card {
+        margin: 1%;
+        background-color: #fff;
+        border: 5px solid var(--blue-color);
+    }
+}
