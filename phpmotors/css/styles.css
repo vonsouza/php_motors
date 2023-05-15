@@ -75,6 +75,38 @@ nav a:hover {
     height: 100px;
 }
 
+.login-card{
+    background-color: #f2f2f2;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 3%;
+    margin-inline-start: 10%;
+    margin-inline-end: 10%;
+}
+
+#clientEmail{
+    margin-inline-start: 30px;
+}
+#clientFirstname{
+    margin-inline-start: 5px;
+}
+#clientLastname{
+    margin-inline-start: 13px;
+}
+#clientEmailRegister{
+    margin-inline-start: 50px;
+}
+#clientPasswordRegister{
+    margin-inline-start: 15px;
+}
+.explan-password{
+    font-size: small;
+}
+.btn-show-password{
+    background-color: #333;
+    color: #f2f2f2;
+}
 .reviews-title {
     margin-bottom: 10%;
 }
@@ -220,5 +252,15 @@ footer p {
     }
     .my-account {
         margin-top: 1%;
+    }
+    .login-card{
+        margin-inline-start: 25%;
+        margin-inline-end: 25%;
+    }
+}
+@media (min-width: 1100px) {
+    .login-card{
+        margin-inline-start: 35%;
+        margin-inline-end: 35%;
     }
 }

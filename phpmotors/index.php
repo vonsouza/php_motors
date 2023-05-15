@@ -29,8 +29,15 @@ switch ($action) {
     case 'something':
 
         break;
-
+    case 'template':
+        //add ?action=template
+        include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/template.php';
+            break;
+    case 'login':
+        //add ?action=login
+        include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/login.php';
+            break;
     default:
-        include 'view/home.php';
-        //include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/home.php';
+        //include 'view/home.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/home.php';
 }

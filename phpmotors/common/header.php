@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- 21:00 -->
+
 <head>
     <meta charset="UTF-8">
     <title> Home | PHP Motors</title>
@@ -12,8 +12,8 @@
 <div id="wrapper">
     <header>
         <div id="top-header">
-            <img class="logo-image" src="images/site/logo.png" alt="Logo">
-            <a class="my-account" href="/phpmotors/accounts?action=login-page" title="Login or Register with PHP Motors" id="acc">My Account </a>
+            <img class="logo-image" src="/starter-assets/phpmotors/images/site/logo.png" alt="Logo PHP motors">
+            <a class="my-account" href="/starter-assets/phpmotors/accounts/index.php?action=login" title="Login or Register with PHP Motors" id="acc">My Account </a>
         </div>
     </header>
     <nav>
