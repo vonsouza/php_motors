@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html>
+<!-- <!DOCTYPE html>
+<html lang="en"> -->
+
 
 <head>
     <title>Home Page</title>
@@ -9,9 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,200;1,100&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<!-- <body> -->
     <div class="main-card">
-        <header>
+        <?php include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/common/header.php'; ?>
+        <!-- <header>
             <img class="logo-image" src="images/site/logo.png" alt="Logo">
             <p class="my-account">My Account</p>
             <p></p>
@@ -23,11 +25,10 @@
                 <a href="#">Trucks</a>
                 <a href="#">Used</a>
             </nav>
-        </header>
+        </header> -->
 
         <div class="internal-card">
             <h1>Welcome to PHP Home Page</h1>
-            <p>Group 6: Chima, Von and Karrass</p>
 
             <div class="container-img">
                 <img class="delorean-img" src="images/delorean.jpg" alt="Imagem">
@@ -85,14 +86,15 @@
             </div>
 
             <!-- Footer -->
-            <footer>
+            <?php include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/common/footer.php'; ?>
+            <!-- <footer>
                 <div class="footer_motors">
                     <hr>
                     <p>&copy; PHP Motors. All Rights Reserved.</p>
                     <p>All images used are believed to be in "Fair Use". Please notify the author if any are not and they will be removed. </p>
                     <p class="last-update"> last Update: 30 Marc, 2018</p>
                 </div>
-            </footer>
+            </footer> -->
         </div>
     </div>
-</body>
+<!-- </body> -->
