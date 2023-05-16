@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- <!DOCTYPE html>
+<html lang="en"> -->
 
-<head>
+<!-- <head>
     <meta charset="UTF-8">
     <title> Home | PHP Motors</title>
     <link href="CSS/styles.css" type="text/css" rel="stylesheet" media="screen">
     <meta name="viewport" content="width-device.width, initial-scale=1.0">
-</head>
+</head> -->
 
-<body>
+<!-- <body> -->
 <div id="wrapper">
     <header>
         <div id="top-header">
@@ -21,4 +21,5 @@
         <!--  include $SERVER['DOCUMENT_ROOT'].'/starter-assets/phpmotors/common/nav.php'; ?> -->
         <?php echo $navList; ?>
     </nav>
-    <main>
+    <!-- <main> -->
+</div>

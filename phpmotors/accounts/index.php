@@ -36,7 +36,7 @@ switch ($action) {
         include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/login.php';
             break;
     case 'register':
-        //add ?action=login
+        //add ?action=register
         include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/register.php';
             break;
     default:
