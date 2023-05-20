@@ -14,6 +14,12 @@
 
             <h1>Sign In</h1>
 
+            <?php
+                if (isset($message)) {
+                echo $message;
+                }
+            ?>
+
             <form method="post" action="signin.php">
                 <label for="clientEmail">Email:    </label>
                 <input type="email" id="clientEmail" name="clientEmail" required><br><br>
@@ -24,7 +30,7 @@
                 <input type="submit" value="Sign In"><br><br>
             </form>
 
-            <p>Not a member yet? <a href="/starter-assets/phpmotors/accounts/index.php?action=register">Sign up here</a></p>
+            <p>Not a member yet? <a href="/starter-assets/phpmotors/accounts/index.php?action=registration">Sign up here</a></p>
 
         </div>
         <!-- Footer -->

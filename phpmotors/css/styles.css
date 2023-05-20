@@ -88,16 +88,16 @@ nav a:hover {
 #clientEmail{
     margin-inline-start: 30px;
 }
-#clientFirstname{
+#fname{
     margin-inline-start: 5px;
 }
-#clientLastname{
+#lname{
     margin-inline-start: 13px;
 }
-#clientEmailRegister{
+#email{
     margin-inline-start: 50px;
 }
-#clientPasswordRegister{
+#password{
     margin-inline-start: 15px;
 }
 .explan-password{
