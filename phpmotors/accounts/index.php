@@ -73,6 +73,20 @@ switch ($action) {
         }
 
         break;
+
+        case 'vehicleManagement':
+            //add ?action=vehicleManagement
+            include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/vehicle-man.php';
+                break;
+
+        case 'add-classification':
+            //add ?action=add-classification
+            include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/add-classification.php';
+                break;
+        case 'add-vehicle':
+            //add ?action=add-vehicle
+            include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/add-vehicle.php';
+                break;
     default:
 
         break;

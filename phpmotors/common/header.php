@@ -13,6 +13,7 @@
     <header>
         <div id="top-header">
             <img class="logo-image" src="/starter-assets/phpmotors/images/site/logo.png" alt="Logo PHP motors">
+            <a class="my-account" href="/starter-assets/phpmotors/accounts/index.php?action=vehicleManagement" title="Vehicle Management with PHP Motors" id="vehicleManagement">Vehicle Management </a>
             <a class="my-account" href="/starter-assets/phpmotors/accounts/index.php?action=login" title="Login or Register with PHP Motors" id="acc">My Account </a>
         </div>
     </header>
