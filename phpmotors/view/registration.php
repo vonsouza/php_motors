@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+    
 <head>
     <title>Register Page</title>
     <link rel="stylesheet" type="text/css" href="../CSS/styles.css">
@@ -38,7 +41,7 @@
                 <!-- <input type="password" id="clientPasswordRegistration" name="clientPassword" required> -->
                 <input type="password" name="clientPassword" id="password"><br><br>
 
-                <input type="button" class="btn-show-password" value="Show Password"><br><br>
+                <!-- <input type="button" class="btn-show-password" value="Show Password"><br><br> -->
                 
                 <!-- Add the action name - value pair -->
                 <input type="hidden" name="action" value="registerUser">

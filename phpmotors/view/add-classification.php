@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+    
 <head>
     <title>Add Classification</title>
     <link rel="stylesheet" type="text/css" href="../CSS/styles.css">
@@ -19,9 +22,9 @@
             }
         ?>
 
-        <form method="post" action="/starter-assets/phpmotors/accounts/index.php">
-            <label for="classificationname">Classification Name    </label><br>
-            <input type="text" name="classificationname" id="cname"><br><br>
+        <form method="post" action="/starter-assets/phpmotors/vehicles/index.php">
+            <label for="classificationName">Classification Name </label><br>
+            <input type="text" name="classificationName" id="classificationName"><br><br>
             
             <!-- Add the action name - value pair -->
             <input type="hidden" name="action" value="addClassification">

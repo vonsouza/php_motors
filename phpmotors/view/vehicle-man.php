@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+    
 <head>
     <title>Vehicle Management</title>
     <link rel="stylesheet" type="text/css" href="../CSS/styles.css">
@@ -15,10 +18,10 @@
 
         <ul>
             <li>
-                <a href="/starter-assets/phpmotors/accounts/index.php?action=add-classification" title="Add Classification with PHP Motors">Add Classification </a>
+                <a href="/starter-assets/phpmotors/vehicles/index.php?action=add-classification" title="Add Classification with PHP Motors">Add Classification </a>
             </li>
             <li> 
-                <a href="/starter-assets/phpmotors/accounts/index.php?action=add-vehicle" title="Add Vehicle with PHP Motors">Add Vehicle </a>
+                <a href="/starter-assets/phpmotors/vehicles/index.php?action=add-vehicle" title="Add Vehicle with PHP Motors">Add Vehicle </a>
             </li>
         </ul>
 
