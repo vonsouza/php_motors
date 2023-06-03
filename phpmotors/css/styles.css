@@ -75,7 +75,7 @@ nav a:hover {
     height: 100px;
 }
 
-.login-card{
+.login-card {
     background-color: #f2f2f2;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -85,25 +85,26 @@ nav a:hover {
     margin-inline-end: 10%;
 }
 
-#clientEmail{
-    margin-inline-start: 30px;
+#clientEmail {
+    margin-inline-start: 43px;
 }
-#fname{
+#clientFirstname {
     margin-inline-start: 5px;
 }
-#lname{
+#clientLastname {
     margin-inline-start: 13px;
 }
-#email{
+#clientEmailReg {
     margin-inline-start: 50px;
 }
-#password{
+#clientPassword {
     margin-inline-start: 15px;
 }
-.explan-password{
-    font-size: small;
+.explan-password {
+    font-size: xx-small;
+    font-style: italic;
 }
-.btn-show-password{
+.btn-show-password {
     background-color: #333;
     color: #f2f2f2;
 }
@@ -112,6 +113,17 @@ nav a:hover {
 }
 ul li {
     margin: 4%;
+}
+
+.messageSuccessOrError {
+    color: darkcyan;
+    font-size: smaller;
+    font-style: oblique;
+    font-weight: bold;
+    animation: blink 3s infinite;
+    margin: 5%;
+    text-align: center;
+    background-color: rgb(155, 240, 240);
 }
 
 /* footer */
@@ -142,7 +154,7 @@ footer p {
     color: var(--blue-color);
     line-height: 0.8%;
     font-weight: bold;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Courier New", Courier, monospace;
     font-size: larger;
 }
 
@@ -154,7 +166,7 @@ footer p {
     color: var(--blue-color);
     line-height: 0.8%;
     font-weight: bold;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Courier New", Courier, monospace;
     font-size: larger;
 }
 
@@ -166,7 +178,7 @@ footer p {
     color: var(--blue-color);
     line-height: 0.8%;
     font-weight: bold;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Courier New", Courier, monospace;
     font-size: larger;
 }
 
@@ -178,7 +190,7 @@ footer p {
     color: var(--blue-color);
     line-height: 0.8%;
     font-weight: bold;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Courier New", Courier, monospace;
     font-size: larger;
 }
 
@@ -201,6 +213,39 @@ footer p {
     margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* inputs */
+input:required:invalid,
+input:focus:invalid {
+    /* background-image: url(/images/invalid.png); */
+    background-color: #f4d9cc;
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+input:required:valid {
+    /* background-image: url(/images/valid.png); */
+    background-color: #ccebd7;
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    25% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    85% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 @media (max-width: 800px) {
@@ -253,13 +298,13 @@ footer p {
     .my-account {
         margin-top: 1%;
     }
-    .login-card{
+    .login-card {
         margin-inline-start: 25%;
         margin-inline-end: 25%;
     }
 }
 @media (min-width: 1100px) {
-    .login-card{
+    .login-card {
         margin-inline-start: 35%;
         margin-inline-end: 35%;
     }

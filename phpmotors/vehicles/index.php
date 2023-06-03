@@ -10,6 +10,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/library/conn
 require_once $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/model/main-model.php';
 //Get the accounts model
 require_once $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/model/vehicles-model.php';
+// Get the functions library
+require_once $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/library/functions.php';
 
 // Get the array of classifications
 $classifications = getClassifications();
@@ -17,12 +19,23 @@ $classifications = getClassifications();
 // 	exit;
 
 // Build a navigation bar using the $classifications array
-$navList = '<ul>';
-$navList .= "<li><a href='/phpmotors/index.php' title='View the PHP Motors home page'>Home</a></li>";
-foreach ($classifications as $classification) {
-    $navList .= "<li><a href='/phpmotors/index.php?action=" . urlencode($classification['classificationName']) . "' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
-}
-$navList .= '</ul>';
+// $navList = '<ul>';
+// $navList .= "<li><a href='/phpmotors/index.php' title='View the PHP Motors home page'>Home</a></li>";
+// foreach ($classifications as $classification) {
+//     $navList .= "<li><a href='/phpmotors/vehicles?action=classification&classificationName="
+//      . urlencode($classification['classificationName']) . 
+//      "' title='View our $classification[classificationName] lineup pf vehicles'>$classification[classificationName]</a></li>";
+// }
+// $navList .= '</ul>';
+$navList = buildNavigationBar($classifications);
+
+//Building Classification Select List
+// $classificationList = '<select name="classificationId" id="classificationList">';
+// $classificationList .= "<option>Choose a Classification</option>";
+// foreach ($classifications as $classification){
+//     $classificationList .= "<option value='$classification[classificationId]'>$classification[classificationName]</option>";
+// }
+// $classificationList .= '</select>';
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
@@ -35,10 +48,7 @@ switch ($action) {
         // echo 'You are in the addClassification case statement.';
 
         // Filter and store the data
-        $classificationName = filter_input(INPUT_POST, 'classificationName');
-        // $clientLastname = filter_input(INPUT_POST, 'clientLastname');
-        // $clientEmail = filter_input(INPUT_POST, 'clientEmail');
-        // $clientPassword = filter_input(INPUT_POST, 'clientPassword');
+        $classificationName = trim(filter_input(INPUT_POST, 'classificationName', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
 
         // Check for missing data
         if (empty($classificationName)) {
@@ -56,7 +66,7 @@ switch ($action) {
             include '../view/add-classification.php';
             exit;
         } else {
-            $message = "<p>Sorry $classificationName, but the registration failed. Please try again.</p>";
+            $message = "<p>Sorry the registration for $classificationName failed. Please try again.</p>";
             include '../view/add-classification.php';
             exit;
         }
@@ -64,18 +74,17 @@ switch ($action) {
         break;
 
     case 'registerVehicle':
-        //echo 'You are in the registerVehicle case statement.';
 
         // Filter and store the data
-        $invMake = filter_input(INPUT_POST, 'invMake');
-        $invModel = filter_input(INPUT_POST, 'invModel');
-        $invDescription = filter_input(INPUT_POST, 'invDescription');
-        $invImage = filter_input(INPUT_POST, 'invImage');
-        $invThumbnail = filter_input(INPUT_POST, 'invThumbnail');
-        $invPrice = filter_input(INPUT_POST, 'invPrice');
-        $invStock = filter_input(INPUT_POST, 'invStock');
-        $invColor = filter_input(INPUT_POST, 'invColor');
-        $classificationId = filter_input(INPUT_POST, 'classificationId');
+        $invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $invModel = trim(filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $invDescription = filter_input(INPUT_POST, 'invDescription', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $invImage = trim(filter_input(INPUT_POST, 'invImage', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $invThumbnail = trim(filter_input(INPUT_POST, 'invThumbnail', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $invPrice = trim(filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION));
+        $invStock = trim(filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $invColor = trim(filter_input(INPUT_POST, 'invColor', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $classificationId = trim(filter_input(INPUT_POST, 'classificationId', FILTER_SANITIZE_NUMBER_INT));
 
         // Check for missing data
         if (
@@ -83,7 +92,6 @@ switch ($action) {
             empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invColor) ||
             empty($classificationId)
         ) {
-            echo 'empty -----------------------------------------------------------------------';
             $message = '<p>Please provide information for the empty form field.</p>';
             include '../view/add-vehicle.php';
             exit;
@@ -94,12 +102,10 @@ switch ($action) {
 
         // Check and report the result
         if ($regOutcome === 1) {
-            echo 'regOutcome === 1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<';
             $message = "<p>Thanks for registering $invMake.</p>";
             include '../view/add-vehicle.php';
             exit;
         } else {
-            echo 'No else >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>';
             $message = "<p>Sorry!! the registration for $invMake failed. Please try again.</p>";
             include '../view/add-vehicle.php';
             exit;
@@ -120,6 +126,7 @@ switch ($action) {
         include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/add-vehicle.php';
         break;
     default:
+        include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/vehicle-man.php';
 
         break;
 }

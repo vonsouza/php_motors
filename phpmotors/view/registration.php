@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <head>
     <title>Register Page</title>
     <link rel="stylesheet" type="text/css" href="../CSS/styles.css">
@@ -17,35 +17,36 @@
 
             <h1>Register In</h1>
 
-            <?php
+            <div class="messageSuccessOrError">
+                <?php
                 if (isset($message)) {
-                echo $message;
+                    echo $message;
                 }
-            ?>
+                ?>
+            </div>
 
             <form method="post" action="/starter-assets/phpmotors/accounts/index.php">
-                <label for="clientFirstname">First Name:    </label>
-                <!-- <input type="text" id="clientFirstname" name="clientFirstname" required> -->
-                <input type="text" name="clientFirstname" id="fname"><br><br>
+                <label for="clientFirstname">First Name: </label>
+                <input type="text" name="clientFirstname" id="clientFirstname" required <?php if (isset($clientFirstname)) {
+                                                                                            echo "value='$clientFirstname'";
+                                                                                        }  ?>><br><br>
 
-                <label for="clientLastname">Last Name:    </label>
-                <!-- <input type="text" id="clientLastname" name="clientLastname" required> -->
-                <input type="text" name="clientLastname" id="lname"><br><br>
+                <label for="clientLastname">Last Name: </label>
+                <input type="text" name="clientLastname" id="clientLastname" required <?php if (isset($clientLastname)) {
+                                                                                            echo "value='$clientLastname'";
+                                                                                        }  ?>><br><br>
 
-                <label for="clientEmail">Email:    </label>
-                <!-- <input type="email" id="clientEmailRegistration" name="clientEmail" required> -->
-                <input type="email" name="clientEmail" id="email"><br><br>
+                <label for="clientEmail">Email: </label>
+                <input type="email" name="clientEmail" id="clientEmailReg" required <?php if (isset($clientEmail)) {
+                                                                                        echo "value='$clientEmail'";
+                                                                                    }  ?>><br><br>
 
-                <p class="explan-password">The password must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special caracter</p>
-                <label for="clientPassword">Password: </label >
-                <!-- <input type="password" id="clientPasswordRegistration" name="clientPassword" required> -->
-                <input type="password" name="clientPassword" id="password"><br><br>
+                <span class="explan-password">The password must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special caracter</span><br>
+                <label for="clientPassword">Password: </label>
+                <input type="password" name="clientPassword" id="clientPassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"><br><br>
 
-                <!-- <input type="button" class="btn-show-password" value="Show Password"><br><br> -->
-                
                 <!-- Add the action name - value pair -->
                 <input type="hidden" name="action" value="registerUser">
-
                 <input type="submit" value="Register">
 
                 <br><br>

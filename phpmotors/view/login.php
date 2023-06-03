@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <head>
     <title>Login Page</title>
     <link rel="stylesheet" type="text/css" href="../CSS/styles.css">
@@ -17,19 +17,25 @@
 
             <h1>Sign In</h1>
 
-            <?php
+            <div class="messageSuccessOrError">
+                <?php
                 if (isset($message)) {
-                echo $message;
+                    echo $message;
                 }
-            ?>
+                ?>
+            </div>
 
-            <form method="post" action="signin.php">
-                <label for="clientEmail">Email:    </label>
-                <input type="email" id="clientEmail" name="clientEmail" required><br><br>
+            <form method="post" action="/starter-assets/phpmotors/accounts/index.php">
+                <label for="clientEmail">Email: </label>
+                <input type="email" id="clientEmail" name="clientEmail" required <?php if (isset($clientEmail)) {
+                                                                                        echo "value='$clientEmail'";
+                                                                                    }  ?>><br><br>
 
+                <span class="explan-password">The password must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special caracter</span><br>
                 <label for="clientPassword">Password:</label>
-                <input type="password" id="clientPassword" name="clientPassword" required><br><br>
+                <input type="password" id="clientPassword" name="clientPassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"><br><br>
 
+                <input type="hidden" name="action" value="loginUser">
                 <input type="submit" value="Sign In"><br><br>
             </form>
 

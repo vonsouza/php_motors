@@ -16,19 +16,22 @@
 
         <h1>Add Classification</h1>
 
-        <?php
-            if (isset($message)) {
-            echo $message;
-            }
-        ?>
+        <div class="messageSuccessOrError">
+            <?php
+                if (isset($message)) {
+                echo $message;
+                }
+            ?>
+        </div>
 
         <form method="post" action="/starter-assets/phpmotors/vehicles/index.php">
+
+            <span class="explan-password">The Classification Name is limited to 30 characters</span><br> 
             <label for="classificationName">Classification Name </label><br>
-            <input type="text" name="classificationName" id="classificationName"><br><br>
+            <input type="text" name="classificationName" id="classificationName" maxlength="30" required><br><br>
             
             <!-- Add the action name - value pair -->
             <input type="hidden" name="action" value="addClassification">
-
             <input type="submit" value="Add Classification">
 
             <br><br>

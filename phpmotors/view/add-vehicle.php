@@ -1,4 +1,16 @@
-<!DOCTYPE html>
+<?php
+$classificationList = '<select name="classificationId" id="classificationList">';
+foreach ($classifications as $classification){
+    $classificationList .= "<option value='$classification[classificationId]'";
+    if(isset($classificationId)){
+        if($classification['classificationId'] === $classificationId){
+            $classificationList .= ' selected ';
+        }
+    }
+    $classificationList .= ">$classification[classificationName]</option>";
+}
+$classificationList .= '</select>';
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -16,56 +28,66 @@
 
         <h1>Add Vehicle</h1>
 
+        <div class="messageSuccessOrError">
         <?php
             if (isset($message)) {
-            echo $message;
+                echo $message;
             }
-        ?>
+            ?>
+        </div>
 
-        <p>*Note all Fields are required</p>
+        <span class="explan-password">*Note all Fields are required</span><br>
 
         <form method="post" action="/starter-assets/phpmotors/vehicles/index.php">
-            <select class="custom-select" id="classificationId" name="classificationId">
-                <option value="#" disabled selected>Choose Car Classification</option>
-                <option value="2">Classic</option>
-                <option value="3">Sport</option>
-                <option value="1">SUV</option>
-                <option value="4">Trucks</option>
-                <option value="5">Used</option>
-            </select><br><br>
-    
+
+            <label>Classification </label><br>
+            <?php
+            echo $classificationList;
+            ?><br>
+
             <label for="invMake">Make </label><br>
-            <input type="text" name="invMake" id="invMake"><br><br>
+            <input type="text" name="invMake" id="invMake" <?php if (isset($invMake)) {
+                                                                echo "value='$invMake'";
+                                                            } ?> required><br><br>
 
             <label for="invModel">Model </label><br>
-            <input type="text" name="invModel" id="invModel"><br><br>
+            <input type="text" name="invModel" id="invModel" <?php if (isset($invModel)) {
+                                                                    echo "value='$invModel'";
+                                                                } ?> required><br><br>
 
             <label for="invDescription">Description </label><br>
-            <textarea name="invDescription" id="invDescription" rows="3" cols="20"> </textarea><br><br>
+            <textarea name="invDescription" id="invDescription" <?php if (isset($invDescription)) {
+                                                                                    echo "value='$invDescription'";
+                                                                                } ?> required> </textarea><br><br>
 
             <label for="invImage">Image Path </label><br>
-            <input type="text" name="invImage" id="invImage"><br><br>
+            <input type="text" name="invImage" id="invImage" <?php if (isset($invImage)) {
+                                                                    echo "value='$invImage'";
+                                                                } ?> required><br><br>
 
             <label for="invThumbnail">Thumbnail Path </label><br>
-            <input type="text" name="invThumbnail" id="invThumbnail"><br><br>
-
+            <input type="text" name="invThumbnail" id="invThumbnail" <?php if (isset($invThumbnail)) {
+                                                                            echo "value='$invThumbnail'";
+                                                                        } ?> required><br><br>
+            
+            <span class="explan-password">Price only allows numbers (int or float)</span><br> 
             <label for="invPrice">Price </label><br>
-            <input type="text" name="invPrice" id="invPrice"><br><br>
+            <input type="text" name="invPrice" id="invPrice" pattern="[+-]?\d+(\.\d+)?" <?php if (isset($invPrice)) {
+                                                                    echo "value='$invPrice'";
+                                                                } ?> required><br><br>
 
             <label for="invStock">Stock </label><br>
-            <input type="text" name="invStock" id="invStock"><br><br>
+            <input type="text" name="invStock" id="invStock" <?php if (isset($invStock)) {
+                                                                    echo "value='$invStock'";
+                                                                } ?> required><br><br>
 
             <label for="invColor">Color </label><br>
-            <input type="text" name="invColor" id="invColor"><br><br>
-
-            <!-- <label for="classificationId">Classification Id </label ><br>
-            <input type="text" name="classificationId" id="classificationId"><br><br> -->
+            <input type="text" name="invColor" id="invColor" <?php if (isset($invColor)) {
+                                                                    echo "value='$invColor'";
+                                                                } ?> required><br><br>
 
             <!-- Add the action name - value pair -->
-            
-
             <input type="submit" name="submit" value="Add Vehicle">
-
             <input type="hidden" name="action" value="registerVehicle">
 
             <br><br>
