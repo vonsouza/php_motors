@@ -1,10 +1,7 @@
 <?php
-/*
+/***********
     Vehicles Controller
-*/
-
-// require_once '../library/connections.php';
-// require_once '../model/main-model.php';
+**********/
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/library/connections.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/model/main-model.php';
@@ -15,27 +12,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/library/func
 
 // Get the array of classifications
 $classifications = getClassifications();
-// var_dump($classifications);
-// 	exit;
-
-// Build a navigation bar using the $classifications array
-// $navList = '<ul>';
-// $navList .= "<li><a href='/phpmotors/index.php' title='View the PHP Motors home page'>Home</a></li>";
-// foreach ($classifications as $classification) {
-//     $navList .= "<li><a href='/phpmotors/vehicles?action=classification&classificationName="
-//      . urlencode($classification['classificationName']) . 
-//      "' title='View our $classification[classificationName] lineup pf vehicles'>$classification[classificationName]</a></li>";
-// }
-// $navList .= '</ul>';
 $navList = buildNavigationBar($classifications);
-
-//Building Classification Select List
-// $classificationList = '<select name="classificationId" id="classificationList">';
-// $classificationList .= "<option>Choose a Classification</option>";
-// foreach ($classifications as $classification){
-//     $classificationList .= "<option value='$classification[classificationId]'>$classification[classificationName]</option>";
-// }
-// $classificationList .= '</select>';
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
@@ -82,7 +59,7 @@ switch ($action) {
         $invImage = trim(filter_input(INPUT_POST, 'invImage', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
         $invThumbnail = trim(filter_input(INPUT_POST, 'invThumbnail', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
         $invPrice = trim(filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION));
-        $invStock = trim(filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $invStock = trim(filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_NUMBER_INT));
         $invColor = trim(filter_input(INPUT_POST, 'invColor', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
         $classificationId = trim(filter_input(INPUT_POST, 'classificationId', FILTER_SANITIZE_NUMBER_INT));
 
