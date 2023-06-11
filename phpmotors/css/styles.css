@@ -23,6 +23,11 @@ header {
     color: black;
 }
 
+.no-decoration{
+    text-decoration: none;
+    color: black;
+}
+
 nav {
     background-color: #333;
     display: flex;

@@ -1,3 +1,11 @@
+<?php
+// Check if the user is not authenticated
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== TRUE) {
+    header('Location: /starter-assets/phpmotors/accounts/index.php?action=home');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     

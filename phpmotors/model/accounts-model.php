@@ -32,4 +32,33 @@ function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassw
     return $rowsChanged;
    }
 
+//function to check for existing email address
+function checkExistingEmail($clientEmail){
+    $db = phpmotorsConnect();
+    $sql = 'SELECT clientEmail FROM clients WHERE clientEmail = :clientEmail';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':clientEmail', $clientEmail, PDO::PARAM_STR);
+    $stmt->execute();
+    $matchEmail = $stmt ->fetch(PDO::FETCH_NUM);
+    $stmt->closeCursor();
+    if(empty($matchEmail)){
+        return 0;
+        //Nothing found
+    }else {
+        return 1;
+        //Match found
+    }
+   }
+
+// Get client data based on an email address
+function getClient($clientEmail){
+    $db = phpmotorsConnect();
+    $sql = 'SELECT clientId, clientFirstname, clientLastname, clientEmail, clientLevel, clientPassword FROM clients WHERE clientEmail = :clientEmail';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':clientEmail', $clientEmail, PDO::PARAM_STR);
+    $stmt->execute();
+    $clientData = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $clientData;
+   }
 ?>

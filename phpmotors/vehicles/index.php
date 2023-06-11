@@ -91,6 +91,7 @@ switch ($action) {
 
     case 'vehicleManagement':
         //add ?action=vehicleManagement
+        $_SESSION['loggedin'] = TRUE;
         include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/vehicle-man.php';
         break;
 

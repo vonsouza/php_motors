@@ -19,8 +19,11 @@
 
             <div class="messageSuccessOrError">
                 <?php
-                if (isset($message)) {
-                    echo $message;
+                // if (isset($message)) {
+                //     echo $message;
+                // }
+                if (isset($_SESSION['message'])) {
+                    echo $_SESSION['message'];
                 }
                 ?>
             </div>
@@ -46,3 +49,10 @@
         <?php include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/common/footer.php'; ?>
     </div>
 </div>
+
+<script>
+    setTimeout(function() {
+        var messageDiv = document.querySelector('.messageSuccessOrError');
+        messageDiv.style.display = 'none';
+    }, 7000); // 7 seconds in milliseconds
+</script>
