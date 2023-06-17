@@ -3,7 +3,7 @@
 
 <head>
     <title>Home Page</title>
-    <link rel="stylesheet" type="text/css" href="../CSS/styles.css">
+    <link rel="stylesheet" type="text/css" href="/starter-assets/phpmotors/CSS/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,200;1,100&display=swap" rel="stylesheet">
@@ -17,16 +17,16 @@
         <h1>Welcome to PHP Home Page</h1>
 
         <div class="container-img">
-            <img class="delorean-img" src="../images/delorean.jpg" alt="Imagem">
+            <img class="delorean-img" src="/starter-assets/phpmotors/images/delorean.jpg" alt="Imagem">
             <div class="text-0">DMC Delorean </div>
             <div class="text-1">3 Cup holders </div>
             <div class="text-2">Superman doors </div>
             <div class="text-3">Fuzzy dice </div>
 
-            <img class="img-own_today" src="../images/site/own_today.png" alt="own today">
+            <img class="img-own_today" src="/starter-assets/phpmotors/images/site/own_today.png" alt="own today">
         </div>
 
-        <img class="big-img-own_today" src="../images/site/own_today.png" alt="own today">
+        <img class="big-img-own_today" src="/starter-assets/phpmotors/images/site/own_today.png" alt="own today">
 
         <div class="container" id="container">
             <div class="child-container" id="child-container-1">
@@ -45,25 +45,25 @@
                 <div class="cards">
                     <div class="card-external">
                         <div class="card">
-                            <img src="../images/upgrades/flux-cap.png" alt="flux cap">
+                            <img src="/starter-assets/phpmotors/images/upgrades/flux-cap.png" alt="flux cap">
                         </div>
                         <a href="#">Flux Capacitor</a>
                     </div>
                     <div class="card-external">
                         <div class="card">
-                            <img src="../images/upgrades/flame.jpg" alt="flame">
+                            <img src="/starter-assets/phpmotors/images/upgrades/flame.jpg" alt="flame">
                         </div>
                         <a href="#">Flame Decals</a>
                     </div>
                     <div class="card-external">
                         <div class="card">
-                            <img src="../images/upgrades/bumper_sticker.jpg" alt="bumper sticker">
+                            <img src="/starter-assets/phpmotors/images/upgrades/bumper_sticker.jpg" alt="bumper sticker">
                         </div>
                         <a href="#">Bumper Sticker</a>
                     </div>
                     <div class="card-external">
                         <div class="card">
-                            <img src="../images/upgrades/hub-cap.jpg" alt="hub cap">
+                            <img src="/starter-assets/phpmotors/images/upgrades/hub-cap.jpg" alt="hub cap">
                         </div>
                         <a href="#">Hub Caps</a>
                     </div>

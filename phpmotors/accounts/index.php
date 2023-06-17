@@ -37,18 +37,32 @@ if ($action == NULL) {
 }
 
 switch ($action) {
+
     case 'home':
         $_SESSION['loggedin'] = FALSE;
+        session_destroy();
+        unset($_SESSION);
         setcookie('firstname',  '', time() - 3600);
         unset($_COOKIE['firstname']);
         include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/home.php';
         break;
+
+        // session_destroy();
+        // unset($_SESSION);
+        // setcookie('PHPSESSID',  '', strtotime('-1 hour'), '/');
+        // header('Location: /starter-assets/phpmotors/view/home.php');
+        // break;
+    case 'updateAccountInformation':
+        include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/client-update.php';
+        break;
+
     case 'login':
         setcookie('firstname',  '', time() - 3600);
         unset($_COOKIE['firstname']);
         $_SESSION['loggedin'] = FALSE;
         include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/login.php';
         break;
+
     case 'registration':
         include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/registration.php';
         break;
@@ -69,15 +83,19 @@ switch ($action) {
 
         // Deal with existing email during registration
         if ($existingEmail) {
-            $message = "<p>The email address already exists. Do you want to login instead?</p>";
-            include '../view/login.php';
+            // $message = "<p>The email address already exists. Do you want to login instead?</p>";
+            $_SESSION['message'] = "The email address already exists. Do you want to login instead?";
+            // include '../view/login.php';
+            include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/login.php';
             exit;
         }
 
         // Check for missing data
         if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($clientPassword)) {
-            $message = "<p>Please provide information for all empty form fields.</p>";
-            include '../view/registration.php';
+            // $message = "<p>Please provide information for all empty form fields.</p>";
+            $_SESSION['message'] = "Please provide information for all empty form fields.";
+            // include '../view/registration.php';
+            include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/registration.php';
             exit;
         }
 
@@ -97,8 +115,10 @@ switch ($action) {
             header('Location: /starter-assets/phpmotors/accounts/?action=login');
             exit;
         } else {
-            $message = "<p>Sorry $clientFirstname, but the registration failed. Please try again.</p>";
-            include '../view/registration.php';
+            // $message = "<p>Sorry $clientFirstname, but the registration failed. Please try again.</p>";
+            $_SESSION['message'] = "Sorry $clientFirstname, but the registration failed. Please try again.";
+            // include '../view/registration.php';
+            include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/registration.php';
             exit;
         }
 
@@ -114,8 +134,9 @@ switch ($action) {
 
         // Check for missing data
         if (empty($clientEmail) || empty($checkPassword)) {
-            $message = '<p>Please provide information for all empty form fields.</p>';
-            include '../view/login.php';
+            // $message = '<p>Please provide information for all empty form fields.</p>';
+            $_SESSION['message'] = "Please provide information for all empty form fields.";
+            include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/login.php';
             exit;
         }
         // A valid password exists, proceed with the login process
@@ -127,8 +148,9 @@ switch ($action) {
         // If the hashes don't match create an error
         // and return to the login view
         if (!$hashCheck) {
-            $message = '<p class="notice">Please check your password and try again.</p>';
-            include '../view/login.php';
+            // $message = '<p class="notice">Please check your password and try again.</p>';
+            $_SESSION['message'] = "Please check your password and try again.";
+            include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/login.php';
             exit;
         }
         // A valid user exists, log them in
@@ -146,8 +168,95 @@ switch ($action) {
         
 
         // Send them to the admin view
-        include '../view/admin.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/admin.php';
         exit;
+        break;
+
+    case 'updateUser':
+        //echo 'You are in the updateUser case statement.';
+
+        // Filter and store the data
+        $clientFirstname = filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $clientLastname = filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $clientEmail = filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL);
+        $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
+
+        $clientEmail = checkEmail($clientEmail);
+
+        $existingEmail = checkExistingEmail($clientEmail);
+
+        // Deal with existing email during registration
+        if ($existingEmail) {
+            // $message = "<p>The email address already exists.</p>";
+            $_SESSION['message'] = "The email address already exists.";
+            // include '../view/login.php';
+            include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/client-update.php';
+            exit;
+        }
+
+        // Check for missing data
+        if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail)) {
+            // $message = "<p>Please provide information for all empty form fields.</p>";
+            $_SESSION['message'] = "Please provide information for all empty form fields.";
+            include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/client-update.php';
+            exit;
+        }
+
+        // Send the data to the model
+        $updateOutcome = updateClient($clientFirstname, $clientLastname, $clientEmail, $clientId);
+
+        // Check and report the result
+        if ($updateOutcome === 1) {
+            setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
+
+            $_SESSION['message'] = "Client successfully updated! Thanks for Update $clientFirstname.";
+
+            header('Location: /starter-assets/phpmotors/accounts/?action=updateAccountInformation');
+            exit;
+        } else {
+            // $message = "<p>Sorry $clientFirstname, but the update failed. Please try again.</p>";
+            $_SESSION['message'] = "Sorry $clientFirstname, but the update failed. Please try again.";
+            include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/client-update.php';
+            exit;
+        }
+        break;
+
+    case 'updatePassword':
+        //echo 'You are in the updatePassword case statement.';
+        // Filter and store the data
+        $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
+
+        $checkPassword = checkPassword($clientPassword);
+
+        // Check for missing data
+        if (empty($clientPassword) ) {
+            // $message = "<p>Please provide Client Password.</p>";
+            $_SESSION['message'] = "Please provide Client Password.";
+            include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/client-update.php';
+            exit;
+        }
+
+        // Hash the checked password
+        $hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
+
+        // Send the data to the model
+        $updatePassword = updatePassword($hashedPassword, $clientId);
+
+        // Check and report the result
+        if ($updatePassword === 1) {
+            setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
+
+            $_SESSION['message'] = "Password successfully updated!";
+
+            header('Location: /starter-assets/phpmotors/accounts/?action=updateAccountInformation');
+            exit;
+        } else {
+            // $message = "<p>Sorry but the password update failed. Please try again.</p>";
+            $_SESSION['message'] = "Sorry but the password update failed. Please try again.";
+            include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/client-update.php';
+            exit;
+        }
         break;
 
     default:

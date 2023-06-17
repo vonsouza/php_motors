@@ -11,6 +11,12 @@ foreach ($classifications as $classification) {
 }
 $classificationList .= '</select>';
 ?>
+<?php
+    if(!isset($_SESSION['loggedin'])){
+        header('Location: /starter-assets/phpmotors/view/home.php');
+        exit;
+    }
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,12 +61,13 @@ $classificationList .= '</select>';
                 echo $_SESSION ['clientData']['clientEmail'] ;
                 ?>
             </li>
-            <li>clientLevel: 
-                <?php
-                echo $_SESSION ['clientData']['clientLevel'] ;
-                ?>
-            </li>
         </ul> 
+
+        <?php 
+            echo '<h2> Account Management </h2>' ;
+            echo '<span> Use this link to manage account information. </span> <br><br>' ;
+            echo '<a href="/starter-assets/phpmotors/accounts/index.php?action=updateAccountInformation" title="Account Information with PHP Motors" id="vehicleManagement">Update Account Information</a>' ;
+        ?>
 
         <?php 
         if($_SESSION ['clientData']['clientLevel'] == 2 || $_SESSION ['clientData']['clientLevel'] == 3 ){
@@ -69,13 +76,6 @@ $classificationList .= '</select>';
             echo '<a href="/starter-assets/phpmotors/vehicles/index.php?action=vehicleManagement" title="Vehicle Management with PHP Motors" id="vehicleManagement">Vehicle Management </a>' ;
         }
         ?>
-
-        <!-- if level more than 1 -->
-        <!-- <h2> Inventory Management </h2>
-
-        <span> Use this link to manage the inventory. </span> <br><br>
-
-        <a href="/starter-assets/phpmotors/vehicles/index.php?action=vehicleManagement" title="Vehicle Management with PHP Motors" id="vehicleManagement">Vehicle Management </a> -->
 
         <!-- Footer -->
         <?php include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/common/footer.php'; ?>

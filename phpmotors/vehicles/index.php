@@ -29,7 +29,8 @@ switch ($action) {
 
         // Check for missing data
         if (empty($classificationName)) {
-            $message = '<p>Please provide information for the empty form field.</p>';
+            // $message = '<p>Please provide information for the empty form field.</p>';
+            $_SESSION['message'] = "Please provide information for the empty form field.";
             include '../view/add-classification.php';
             exit;
         }
@@ -39,11 +40,13 @@ switch ($action) {
 
         // Check and report the result
         if ($regOutcome === 1) {
-            $message = "<p>Thanks for registering $classificationName.</p>";
+            // $message = "<p>Thanks for registering $classificationName.</p>";
+            $_SESSION['message'] = "Thanks for registering $classificationName.";
             include '../view/add-classification.php';
             exit;
         } else {
-            $message = "<p>Sorry the registration for $classificationName failed. Please try again.</p>";
+            // $message = "<p>Sorry the registration for $classificationName failed. Please try again.</p>";
+            $_SESSION['message'] = "Sorry the registration for $classificationName failed. Please try again.";
             include '../view/add-classification.php';
             exit;
         }
@@ -69,7 +72,8 @@ switch ($action) {
             empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invColor) ||
             empty($classificationId)
         ) {
-            $message = '<p>Please provide information for the empty form field.</p>';
+            // $message = '<p>Please provide information for the empty form field.</p>';
+            $_SESSION['message'] = "Please provide information for the empty form field.";
             include '../view/add-vehicle.php';
             exit;
         }
@@ -79,11 +83,13 @@ switch ($action) {
 
         // Check and report the result
         if ($regOutcome === 1) {
-            $message = "<p>Thanks for registering $invMake.</p>";
+            // $message = "<p>Thanks for registering $invMake.</p>";
+            $_SESSION['message'] = "Thanks for registering $invMake.";
             include '../view/add-vehicle.php';
             exit;
         } else {
-            $message = "<p>Sorry!! the registration for $invMake failed. Please try again.</p>";
+            // $message = "<p>Sorry!! the registration for $invMake failed. Please try again.</p>";
+            $_SESSION['message'] = "Sorry!! the registration for $invMake failed. Please try again.";
             include '../view/add-vehicle.php';
             exit;
         }
@@ -105,6 +111,5 @@ switch ($action) {
         break;
     default:
         include $_SERVER['DOCUMENT_ROOT'] . '/starter-assets/phpmotors/view/vehicle-man.php';
-
         break;
 }
